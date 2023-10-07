@@ -1,0 +1,769 @@
+[
+    {
+        "id": "13de37cb61fc3ad2",
+        "type": "tab",
+        "label": "panneau solaire NOUS AT1",
+        "disabled": false,
+        "info": "affiche les statuts de la prise tamotsa\r\npilote le toggle on off de la prise\r\nenvoie les valeurs dans la bdd mysql\r\n prise sur le panneau solaire"
+    },
+    {
+        "id": "c4c4532a802c05c1",
+        "type": "mqtt in",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "topic": "stat/tasmota_179AB0/POWER",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "c4ad40011fadd485",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "c15749d53eb2ae56"
+            ]
+        ]
+    },
+    {
+        "id": "2e576a0de8aeacdd",
+        "type": "mqtt out",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "topic": "cmnd/tasmota_179AB0/POWER",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c4ad40011fadd485",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c15749d53eb2ae56",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 630,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "57767faf5d92edac",
+        "type": "mqtt in",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "topic": "stat/tasmota_179AB0/RESULT",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "c4ad40011fadd485",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "f6ab8e215236c80a",
+                "c28b3940bacb2315"
+            ]
+        ]
+    },
+    {
+        "id": "bc858956979456eb",
+        "type": "mqtt in",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "topic": "tele/tasmota_179AB0/STATE",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "c4ad40011fadd485",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "786b2c4355db1c7d"
+            ]
+        ]
+    },
+    {
+        "id": "786b2c4355db1c7d",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "state",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 370,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "f34ea9984007869d",
+        "type": "inject",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "2e576a0de8aeacdd"
+            ]
+        ]
+    },
+    {
+        "id": "dd583fe909c1a222",
+        "type": "inject",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "2e576a0de8aeacdd"
+            ]
+        ]
+    },
+    {
+        "id": "8b030207b361e2e5",
+        "type": "mqtt in",
+        "z": "13de37cb61fc3ad2",
+        "name": "",
+        "topic": "tele/tasmota_179AB0/SENSOR",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "c4ad40011fadd485",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "67d20b3ee28b5f8d",
+                "0d515014d753535d",
+                "b755c0427b24da2f"
+            ]
+        ]
+    },
+    {
+        "id": "67d20b3ee28b5f8d",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "sensor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "0d515014d753535d",
+        "type": "function",
+        "z": "13de37cb61fc3ad2",
+        "name": "split resultats  Tamotsa",
+        "func": "//var myPrix = flow.get(\"prixelec\");\nvar myPrix = 22;\nvar msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\nvar msg4 = {};\nvar msg5 = {};\nvar msg6= {};\nvar msg7= {};\nvar msg8= {};\nvar msg9 = {};\nmsg1.topic = 'S1';\nmsg2.topic = 'S2';\nmsg3.topic = 'S3';\nmsg4.topic = 'S4';\nmsg5.topic = 'S5';\nmsg6.topic = 'S6';\nmsg7.topic = 'S7';\nmsg8.topic = 'S8';\nmsg9.topic = 'S9';\nmsg1.payload = msg.payload.ENERGY.ApparentPower;\nmsg2.payload = msg.payload.ENERGY.Current;\nmsg3.payload = msg.payload.ENERGY.Voltage;\nmsg4.payload = msg.payload.ENERGY.Total;\nmsg5.payload = msg.payload.ENERGY.ReactivePower;\nmsg6.payload = msg.payload.ENERGY.Factor;\n//msg6.payload =msg6.payload.toFixed(1);\n//msg5.payload = msg5.payload.toFixed(1);\nmsg7.payload = msg.payload.ENERGY.Today;\nmsg8.payload = msg.payload.ENERGY.Power;\nmsg9.payload = msg.payload.ENERGY.Yesterday;\nreturn [msg1, msg2, msg3, msg4, msg5,msg6,msg7,msg8,msg9];",
+        "outputs": 9,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "14b8ae40236455da"
+            ],
+            [
+                "910c34d436894998",
+                "c5f07ad65ce51cf6"
+            ],
+            [
+                "f69d74da6384fa48",
+                "5791b7b01c107777"
+            ],
+            [
+                "5649b90c3d7f8058",
+                "74b6cbfe7c7f8378",
+                "a9f5554ea321a159"
+            ],
+            [
+                "6241cd2a6fc7eb73",
+                "5e677b3ab5fa86d5"
+            ],
+            [
+                "7445e567d91337fd",
+                "6f0af8485d336320"
+            ],
+            [
+                "33b5d2ea493d618f",
+                "f38c3248a6beb9f2"
+            ],
+            [
+                "82f90504532f7cfb",
+                "e37a9137ae70d6fd",
+                "41ae7b7bbb215bf5"
+            ],
+            [
+                "2dbad1d9cd1c4dad"
+            ]
+        ]
+    },
+    {
+        "id": "910c34d436894998",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "Courrant",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 980,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f69d74da6384fa48",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "tension",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 980,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5649b90c3d7f8058",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "energie totale",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 980,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "6241cd2a6fc7eb73",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "reactive power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 980,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "7445e567d91337fd",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "power factor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 970,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "82f90504532f7cfb",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "Power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 970,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "74b6cbfe7c7f8378",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 9,
+        "width": "6",
+        "height": 1,
+        "name": "Energie totale (KWH)",
+        "label": "<font size={{ 2}} > Energie totale  </font>",
+        "format": "<font size={{ 3}} >{{msg.payload}} {{\"Kwh\"}}</font> ",
+        "layout": "row-center",
+        "x": 1180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a9f5554ea321a159",
+        "type": "ui_chart",
+        "z": "13de37cb61fc3ad2",
+        "name": "Energie Totale",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 13,
+        "width": "6",
+        "height": 4,
+        "label": "<font size={{ 1}} >Energie Totale KWh </font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1480,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6ab8e215236c80a",
+        "type": "function",
+        "z": "13de37cb61fc3ad2",
+        "name": "etat tamotsa",
+        "func": "var msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\nvar msg4 = {};\nvar msg5 = {};\nvar msg6= {};\nvar msg7= {};\nvar msg8= {};\nmsg1.topic = 'S1';\nmsg2.topic = 'S2';\nmsg3.topic = 'S3';\nmsg4.topic = 'S4';\nmsg5.topic = 'S5';\nmsg6.topic = 'S6';\nmsg7.topic = 'S7';\nmsg8.topic = 'S8';\nmsg1.payload = msg.payload.POWER;\n//msg2.payload = msg.payload.ENERGY.Current;\n//msg3.payload = msg.payload.ENERGY.Voltage;\n//msg4.payload = msg.payload.ENERGY.Total;\n//msg5.payload = msg.payload.ENERGY.Total*16;\n//msg6.payload = msg.payload.ENERGY.Power*16;\n//msg7.payload = msg.payload.ENERGY.Power*16;\n//msg8.payload = msg.payload.ENERGY.Power;\nreturn msg1;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e677b3ab5fa86d5",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "d": true,
+        "group": "af6e9ca4e8ef71ea",
+        "order": 5,
+        "width": "2",
+        "height": 1,
+        "name": "Puissance Réactive (VAr)",
+        "label": "<font size={{ 1}} >Reactive Power </font>",
+        "format": "<font size={{ 1}} >{{msg.payload}} {{\"VAr\"}}</font>",
+        "layout": "row-spread",
+        "x": 1210,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "c28b3940bacb2315",
+        "type": "debug",
+        "z": "13de37cb61fc3ad2",
+        "name": "debug 41",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ae3ee607321b49e9",
+        "type": "function",
+        "z": "13de37cb61fc3ad2",
+        "name": " querry Tasmota ",
+        "func": "var P1 = msg.payload.Time.split(\"T\")[0];\nvar P11 = P1.split(\"-\")[0];\nvar P2 = P1.split(\"-\")[1];\nvar P3 = P1.split(\"-\")[2];\nvar P12 = msg.payload.Time.split(\"T\")[1];\nvar P4 = P12.split(\":\")[0];\nvar P5 = P12.split(\":\")[1];\nvar P7 = P12.split(\":\")[2];\nvar P8 = msg.payload.ENERGY.Power;\nvar P9 = msg.payload.ENERGY.Today;\nvar P10 =msg.payload.ENERGY.Total;\n//var P6 =   P1 ;\n var P6 = P11 + P2 + P3+P4+P5+P7;\n//var P6 = P1 + P2 + P3 + P4 + P5 + \"00\";\n//msg.payload =P6;\nvar query = \"INSERT INTO Tasmota (Time,activepower,energytoday) VALUES (\" + P6 + \" ,\" + P8 + \", \" + P9 + \")\";\nmsg.topic = query;\nreturn msg;\n\n\n\n//var P1 = msg.payload.Time;\n\n\n//P1 = Time: \"2023-06-18T07:58:02\"\";\n//var P2 = msg.payload.ENERGY;\n//var P3 = msg.payload[\"KSI (GWh)\"];\n//var query = \"INSERT INTO tasmota (ENERGY) VALUES (\" + P2 + \")\";\n//var query = \"INSERT INTO tasmota (Time) VALUES (\" + P1 + \", \" +P2+ \")\";\nvar query = \"INSERT INTO tasmota (Time) VALUES (\" + P1 + \")\";\n//var query = \"INSERT INTO tasmota (Time,ENERGY) VALUES (\" + P1 + \", \" + P2 + \")\";\nmsg.topic = query;\nreturn msg;\n\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e37a9137ae70d6fd",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 3,
+        "width": "6",
+        "height": 1,
+        "name": "Puissance instantanée (W)",
+        "label": "<font size={{ 3}} > Puissance Instantanée       : </font>",
+        "format": "<font size={{ 3}} >{{msg.payload}} {{\"W\"}}</font> ",
+        "layout": "row-center",
+        "x": 1220,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "41ae7b7bbb215bf5",
+        "type": "ui_chart",
+        "z": "13de37cb61fc3ad2",
+        "name": "puissance instantanée",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 11,
+        "width": "6",
+        "height": 4,
+        "label": "<font size={{ 1}} >puissance instantanée W </font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1480,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "33b5d2ea493d618f",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 7,
+        "width": "6",
+        "height": 1,
+        "name": "Energie aujourdhui (kWh)",
+        "label": "<font size={{ 3}} > Energie aujourdhui</font>",
+        "format": "<font size={{ 4}} >{{msg.payload}} {{\"KW\"}}</font> ",
+        "layout": "row-center",
+        "x": 1210,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "f38c3248a6beb9f2",
+        "type": "ui_chart",
+        "z": "13de37cb61fc3ad2",
+        "name": "Energie aujourdhui",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 12,
+        "width": "6",
+        "height": 4,
+        "label": "<font size={{ 1}} >Energie aujourdhui KWh </font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1490,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b755c0427b24da2f",
+        "type": "delay",
+        "z": "13de37cb61fc3ad2",
+        "name": "1 fois par heure",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "ae3ee607321b49e9"
+            ]
+        ]
+    },
+    {
+        "id": "5791b7b01c107777",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "d": true,
+        "group": "af6e9ca4e8ef71ea",
+        "order": 1,
+        "width": "2",
+        "height": 1,
+        "name": "Tension (V)",
+        "label": "<font size={{ 1}} > Tension  </font>",
+        "format": "<font size={{ 1}} >{{msg.payload}} {{\"V\"}}</font> ",
+        "layout": "row-spread",
+        "x": 1150,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c5f07ad65ce51cf6",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "d": true,
+        "group": "af6e9ca4e8ef71ea",
+        "order": 2,
+        "width": "2",
+        "height": 1,
+        "name": "Courrant (A)",
+        "label": "<font size={{ 1}} > Courrant  </font>",
+        "format": "<font size={{ 1}} >{{msg.payload}} {{\"A\"}}</font> ",
+        "layout": "row-spread",
+        "x": 1150,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "14b8ae40236455da",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "d": true,
+        "group": "af6e9ca4e8ef71ea",
+        "order": 4,
+        "width": "2",
+        "height": 1,
+        "name": "Puissance apparente (W)",
+        "label": "<font size={{ 1}} > puissance apparente </font>",
+        "format": "<font size={{ 1}} >{{msg.payload}} {{\"W\"}}</font> ",
+        "layout": "row-spread",
+        "x": 1190,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6f0af8485d336320",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "d": true,
+        "group": "af6e9ca4e8ef71ea",
+        "order": 6,
+        "width": "2",
+        "height": 1,
+        "name": "facteur puissance",
+        "label": "<font size={{ 1}} >facteur puissance </font>",
+        "format": "<font size={{ 1}} >{{msg.payload}} </font>",
+        "layout": "row-spread",
+        "x": 1190,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2dbad1d9cd1c4dad",
+        "type": "ui_text",
+        "z": "13de37cb61fc3ad2",
+        "group": "af6e9ca4e8ef71ea",
+        "order": 8,
+        "width": "6",
+        "height": 1,
+        "name": "Energie hier(kWh)",
+        "label": "<font size={{2}} > Energie hier</font>",
+        "format": "<font size={{ 3}} >{{msg.payload}} {{\"KW\"}}</font> ",
+        "layout": "row-center",
+        "x": 1190,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "c4ad40011fadd485",
+        "type": "mqtt-broker",
+        "name": "mqtt raspberry",
+        "broker": "10.3.141.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "af6e9ca4e8ef71ea",
+        "type": "ui_group",
+        "name": " Panneau Solaire",
+        "tab": "988df4f2cc6c55bd",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "988df4f2cc6c55bd",
+        "type": "ui_tab",
+        "name": "CREPP CARBONE ",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]
